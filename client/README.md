@@ -1,0 +1,5 @@
+color palette
+5A827E
+84AE92
+B9D4AA
+FAFFCA
