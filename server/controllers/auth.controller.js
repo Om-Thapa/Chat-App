@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt, { hash } from 'bcryptjs';
+
 import { generateToken } from '../lib/utils.js';
 
 export const signup = async (req, res) => {
@@ -28,10 +29,12 @@ export const signup = async (req, res) => {
             generateToken(newUser._id, res);
             await newUser.save();
 
-            return res.status(200).json({
-                ...newUser._doc,
-                password: undefined
-            });
+            setTimeout(()=>{
+                return res.status(200).json({
+                    ...newUser._doc,
+                    password: undefined
+                });
+            }, 1000)
         } else {
             res.status(400).json({ message: "Invalid user data"})
         }
@@ -56,12 +59,23 @@ export const login = async (req, res) => {
         
         generateToken(user._id, res);
 
-        return res.status(200).json({
+        setTimeout(()=>{
+            return res.status(200).json({
             ...user._doc,
             password: undefined
-        });
+            });
+        }, 1000)
     } catch (error) {
         console.log("Error in login controller", error.message);
         res.status(500).json({ message: "Internal Server Error" });
     }
 };
+
+export const checkAuth = async (req, res) => {
+    try {
+        res.status(200).json(req.user);
+    } catch (error) {
+        console.log("Error in checkAuth controller", error.message);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
