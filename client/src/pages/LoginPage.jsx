@@ -78,7 +78,7 @@ const SignUpPage = () => {
           disabled={isLoading}
         >
           {isLoading ? 
-          <div class="bg-transparent flex space-x-3 items-center justify-center">
+          <div className="bg-transparent flex space-x-3 items-center justify-center">
             <LoaderCircle className="animate-spin"/>
             <p>Logging In....</p>
           </div> 

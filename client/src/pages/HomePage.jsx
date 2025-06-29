@@ -1,8 +1,19 @@
 import React from 'react'
+import SideBar from '../components/SideBar';
+import NoChatContainer from '../components/NoChatContainer';
+import { useChatStore } from '../store/useChatStore';
+import { ChatContainer } from '../components/ChatContainer';
 
 const HomePage = () => {
+  const { selectedUser } = useChatStore();
+
   return (
-    <div>HomePage</div>
+    <div className='h-full w-full bg-linear-240 from-green-200 via-gray-200 to-green-300 overflow-hidden flex justify-evenly items-center'>
+      <SideBar />
+
+      
+      {!selectedUser ? <NoChatContainer /> : <ChatContainer />}
+    </div>
   )
 }
 
