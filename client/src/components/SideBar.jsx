@@ -3,9 +3,11 @@ import React from 'react'
 import ProfilePic from '../public/avatar.png'
 import { useChatStore } from '../store/useChatStore'
 import { useEffect } from 'react'
+import { useAuthStore } from '../store/useAuthStore'
 
 const SideBar = () => {
   const { users, getUser, selectedUser, setSelectedUser, isUserLoading } = useChatStore();
+  const { onlineUsers } = useAuthStore();
 
   useEffect(() => {
     getUser();
@@ -29,28 +31,28 @@ const SideBar = () => {
         {users.map(user => (
           <li
             key={user._id}
-            className="flex bg-green-100 items-center gap-3 px-3 py-2 rounded-xl hover:bg-green-300/80 transition cursor-pointer group"
+            className={`flex bg-green-100 items-center gap-3 px-3 py-2 rounded-xl hover:bg-green-300/80 transition cursor-pointer ${user._id === selectedUser?._id ? 'bg-green-300/70' : 'bg-green-100' }`}
             onClick={()=>setSelectedUser(user)}
           >
             <div className="relative">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-200 text-green-800 font-bold text-lg uppercase shadow group-hover:bg-green-300 transition">
+              <span className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-green-800 bg-green-200 font-bold text-lg uppercase shadow group-hover:bg-green-300 transition `}>
                 <img src={user.profilePic ||  ProfilePic} alt="Profile" />
               </span>
-              {/* <Circle
+              <Circle
                 className={`absolute -bottom-1 -right-1 w-3 h-3 ${
-                  user.online ? "text-green-500" : "text-gray-400"
+                  onlineUsers.includes(user._id) ? "text-green-500" : "text-gray-400"
                 }`}
-                fill={user.online ? "#22c55e" : "#d1d5db"}
+                fill={onlineUsers.includes(user._id) ? "#22c55e" : "#d1d5db"}
                 strokeWidth={3}
-              /> */}
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-semibold text-gray-800 text-base truncate max-w-[120px] hidden md:block">
                 {user.fullname}
               </span>
-              {/* <span className={`text-xs ${user.online ? "text-green-600" : "text-gray-400"} hidden md:block`}>
-                {user.online ? "Online" : "Offline"}
-              </span> */}
+              <span className={`text-xs ${onlineUsers.includes(user._id) ? "text-green-600" : "text-gray-400"} hidden md:block`}>
+                {onlineUsers.includes(user._id) ? "Online" : "Offline"}
+              </span>
             </div>
           </li>
         ))}

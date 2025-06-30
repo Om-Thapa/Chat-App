@@ -14,10 +14,12 @@ const NavBar = () => {
 
   return (
     <header className="flex justify-between items-center w-full fixed top-0 z-50 bg-gradient-to-r from-green-200 via-green-100 to-green-100 px-4 py-3 sm:px-8 shadow-2xl/10 border-b border-green-100">
-      <div className="flex items-center space-x-3 bg-green-300/70 px-4 py-2 rounded-2xl shadow-lg/30">
-        <MessageSquareMore strokeWidth={1.2} className="text-green-700 mx-auto" />
-        <span className="hidden sm:inline text-lg font-bold text-green-800 tracking-wide drop-shadow">Talky</span>
-      </div>
+      <Link to='/'>
+        <div className="flex items-center space-x-3 bg-green-300/70 px-4 py-2 rounded-2xl shadow-lg/30">
+          <MessageSquareMore strokeWidth={1.2} className="text-green-700 mx-auto" />
+          <span className="hidden sm:inline text-lg font-bold text-green-800 tracking-wide drop-shadow">Talky</span>
+        </div>
+      </Link>
 
       <div className={`items-center flex ${authUser ? 'flex-row-reverse gap-3' : 'flex-row space-x-2 sm:space-x-4'}`}>
         {authUser 

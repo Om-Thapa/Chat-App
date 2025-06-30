@@ -5,62 +5,43 @@ import { useChatStore } from '../store/useChatStore'
 import { useAuthStore  }from '../store/useAuthStore'
 import MessageInput from './MessageInput'
 
-const Messages = [
-  "Arwfi dsifhi dk idhdsldkh",
-  "Arwfi dsifhi dk idhdsldkh sadljagigjdff",
-  "Arwfi dsifhi dk idhdsldkh asd",
-  "Arwfi dsifhi dk asdih dfjks that faos f om taha dsf sdh",
-  "Arwfi dsifhi dk idhdsldkh sdadf ",
-  "Arwfi dsifhi dk idhdsldkh adf so that i can stay with you and forever Arwfi dsifhi dk idhdsldkh adf so that i can stay with you and forever",
-  "Arwfi dsifhi dk idhdsldkh",
-  "Arwfi dsifhi dk idhdsldkh",
-  "Arwfi dsifhi dk idhdsldkh sadljagigjdff",
-  "Arwfi dsifhi dk idhdsldkh asd",
-  "Arwfi dsifhi dk asdih dfjks that faos f om taha dsf sdh",
-  "Arwfi dsifhi dk idhdsldkh sdadf ",
-  "Arwfi dsifhi dk idhdsldkh adf so that i can stay with you and forever",
-  "Arwfi dsifhi dk idhdsldkh",
-  "Arwfi dsifhi dk idhdsldkh",
-  "Arwfi dsifhi dk idhdsldkh sadljagigjdff",
-  "Arwfi dsifhi dk idhdsldkh asd",
-  "Arwfi dsifhi dk asdih dfjks that faos f om taha dsf sdh",
-  "Arwfi dsifhi dk idhdsldkh sdadf ",
-  "Arwfi dsifhi dk idhdsldkh adf so that i can stay with you and forever",
-  "Arwfi dsifhi dk idhdsldkh",
-]
-
 export const ChatContainer = () => {
     const { 
       messages, 
       getMessages, 
       selectedUser, 
       isMessageLoading, 
-      setSelectedUser 
+      setSelectedUser,
+      subscribeToMessages,
+      unsubscribeFromMessage
     } = useChatStore();
-    const { authUser } = useAuthStore();
+    const { authUser, onlineUsers } = useAuthStore();
     const messEndRef = useRef();
 
     useEffect(() => {
       getMessages(selectedUser._id);
 
-    },[selectedUser._id, getMessages])
+      subscribeToMessages();
+
+      // return unsubscribeFromMessage();
+    },[selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessage]);
     
     useEffect(() => {
-      if(messEndRef.current && Messages)
+      if(messEndRef.current && messages)
         messEndRef.current.scrollIntoView({ behavior: "smooth"});
 
     },[messages])
 
-    // if(isMessageLoading){
-    //   return (
-    //     <div className='size-full justify-center items-center h-24/25 w-[calc(100%-7rem)] md:w-[calc(100%-20rem)] shadow-2xl bg-white/80 rounded-2xl overflow-y-auto transition-all duration-200 border border-green-100 flex flex-col'>
-    //       <div className='bg-amber-100/50 size-25 drop-shadow-2xl/20 border-1 border-green-300/50 flex flex-col items-center justify-center rounded-2xl space-y-1.5'>
-    //         <Loader size={20} className='animate-spin' />
-    //         <p className='text-sm text-center'>Loading Messages....</p>
-    //       </div>
-    //     </div>
-      // )
-    // }
+    if(isMessageLoading){
+      return (
+        <div className='size-full justify-center items-center h-24/25 w-[calc(100%-7rem)] md:w-[calc(100%-20rem)] shadow-2xl bg-white/80 rounded-2xl overflow-y-auto transition-all duration-200 border border-green-100 flex flex-col'>
+          <div className='bg-amber-100/50 size-25 drop-shadow-2xl/20 border-1 border-green-300/50 flex flex-col items-center justify-center rounded-2xl space-y-1.5'>
+            <Loader size={20} className='animate-spin' />
+            <p className='text-sm text-center'>Loading Messages....</p>
+          </div>
+        </div>
+      )
+    }
 
     return (
        <div 
@@ -82,7 +63,7 @@ export const ChatContainer = () => {
                   <div>
                     <h3 className="font-medium">{selectedUser.fullname}</h3>
                     <p className="text-sm text-base-content/70">
-                      "Online"
+                      {onlineUsers.includes(selectedUser._id) ? "Online" : "Offline"}
                     </p>
                   </div>
                 </div>
