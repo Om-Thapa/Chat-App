@@ -5,7 +5,7 @@ import { Eye, EyeClosed, EyeOff, LoaderCircle } from 'lucide-react'
 import { useAuthStore } from '../store/useAuthStore.js'
 
 const SignUpPage = () => {
-  const [form, setForm] = useState({ email: 'omthapa@gmail.com', password: '123456' })
+  const [form, setForm] = useState({ email: '', password: '' })
   const [showPwd, setShowPwd] = useState(false);
 
   const { isLoading, login, error } = useAuthStore();

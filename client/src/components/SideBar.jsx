@@ -31,6 +31,7 @@ const SideBar = () => {
         {users.map(user => (
           <li
             key={user._id}
+            title={user.fullname}
             className={`flex bg-green-100 items-center gap-3 px-3 py-2 rounded-xl hover:bg-green-300/80 transition cursor-pointer ${user._id === selectedUser?._id ? 'bg-green-300/70' : 'bg-green-100' }`}
             onClick={()=>setSelectedUser(user)}
           >

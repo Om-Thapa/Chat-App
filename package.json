@@ -1,0 +1,12 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "A real-time chat application built with **React**, **Socket.IO**, and **MongoDB**. This project demonstrates full-stack real-time communication using modern technologies including React (with Vite), Zustand for state management, Express.js, and Socket.IO for WebSocket communication.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

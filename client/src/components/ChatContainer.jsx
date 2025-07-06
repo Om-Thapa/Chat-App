@@ -76,7 +76,7 @@ export const ChatContainer = () => {
             </div>
 
             {/* Main Containter */}
-            <div className='flex-1 h-[calc(100%-132px)] scrollbar-thin overflow-y-auto w-full bg-amber-100/30'
+            <div className='flex-1 h-[calc(100%-132px)] scrollbar-thin overflow-y-auto w-full pt-1.5 bg-amber-100/30'
             >
               {messages.map((mes)=>(
                 <div key={mes._id} className={`flex mb-2 flex-col ${mes.senderId === authUser._id ? "items-end" : "items-start"} w-full`}>
