@@ -93,7 +93,7 @@ npm run dev
   <img src="./client/src/public/SignUpPage.png" alt="Sign Up Page" width="400"/>
   <img src="./client/src/public/ChatPage.png" alt="Chat App Chat Window" width="400"/>
   <img src="./client/src/public/SettingsPage.png" alt="Chat App Profile Settings" width="400"/>
-  <img src="./client/src/public" alt="Chat App Mobile View" width="400"/>
+  <img src="./client/src/public/MobileView.png" alt="Chat App Mobile View" width="400"/>
 </p>
 
 Maybe will add a friend-list feature in future.
