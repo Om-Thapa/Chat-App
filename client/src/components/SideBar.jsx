@@ -35,8 +35,8 @@ const SideBar = () => {
             onClick={()=>setSelectedUser(user)}
           >
             <div className="relative">
-              <span className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-green-800 bg-green-200 font-bold text-lg uppercase shadow group-hover:bg-green-300 transition `}>
-                <img src={user.profilePic ||  ProfilePic} alt="Profile" />
+              <span className={`inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full text-green-800 bg-green-200 font-bold text-lg uppercase shadow group-hover:bg-green-300 transition`}>
+                <img src={user.profilePic ||  ProfilePic} className='object-fill' alt="Profile" />
               </span>
               <Circle
                 className={`absolute -bottom-1 -right-1 w-3 h-3 ${

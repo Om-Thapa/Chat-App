@@ -13,11 +13,13 @@ const HomePage = () => {
     connectSocket();
   }, [connectSocket])
   return (
-    <div className='h-full w-full bg-linear-240 from-green-200 via-gray-200 to-green-300 overflow-hidden flex justify-evenly items-center'>
-      <SideBar />
+    <div className='h-[calc(100vh-72px)] flex items-center mt-[72px] bg-[hsl(0,0%,90%)] bg-cover'>
+      <div className='h-full w-full bg-linear-240 from-green-200 via-gray-200 to-green-300 overflow-hidden flex justify-evenly items-center'>
+        <SideBar />
 
-      
-      {!selectedUser ? <NoChatContainer /> : <ChatContainer />}
+        
+        {!selectedUser ? <NoChatContainer /> : <ChatContainer />}
+      </div>
     </div>
   )
 }

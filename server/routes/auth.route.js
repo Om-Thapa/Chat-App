@@ -17,7 +17,7 @@ router.get('/logout', (req, res) => {
     }
 });
 
-router.put('/update-profile', updateProfile);
+router.put('/update-profile', protectRoute, updateProfile);
 
 router.get("/check", protectRoute, checkAuth);
 

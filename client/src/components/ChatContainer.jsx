@@ -22,8 +22,8 @@ export const ChatContainer = () => {
       getMessages(selectedUser._id);
 
       subscribeToMessages();
-
-      // return unsubscribeFromMessage();
+      
+      return () => unsubscribeFromMessage();
     },[selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessage]);
     
     useEffect(() => {
@@ -54,8 +54,8 @@ export const ChatContainer = () => {
                 <div className="flex items-center gap-3">
                   {/* Avatar */}
                   <div className="avatar">
-                    <div className="size-12 rounded-full relative">
-                      <img src={selectedUser.profilePic || Profile} alt="Profile" />
+                    <div className="size-12 rounded-full relative overflow-hidden">
+                      <img src={selectedUser.profilePic || Profile} alt="Profile" className='object-fill'/>
                     </div>
                   </div>
         
